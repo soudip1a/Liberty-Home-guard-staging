@@ -17,12 +17,7 @@
     <maven.compiler.target>21</maven.compiler.target>
     <maven.compiler.release>21</maven.compiler.release>
 </properties>
-
-
-
-
   <dependencies>
-    
     <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
 <dependency>
     <groupId>org.seleniumhq.selenium</groupId>
@@ -53,10 +48,16 @@
 <dependency>
     <groupId>io.cucumber</groupId>
     <artifactId>cucumber-java</artifactId>
-    <version>7.27.0</version>
+    <version>7.34.3</version>
 </dependency>
     <!-- Optionally: parameterized tests support -->
-    
+    <!-- Source: https://mvnrepository.com/artifact/io.cucumber/cucumber-testng -->
+<dependency>
+    <groupId>io.cucumber</groupId>
+    <artifactId>cucumber-testng</artifactId>
+    <version>7.34.3</version>
+    <scope>compile</scope>
+</dependency>
     
 </dependencies>
 

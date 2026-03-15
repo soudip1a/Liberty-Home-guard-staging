@@ -22,7 +22,7 @@ public class Login_locaters extends redundant_code{
 	private WebElement error_message;
 	@FindBy(xpath="(//*[@aria-labelledby='recaptcha-anchor-label']//*[1])[1]")
 	private WebElement captcha;
-	@FindBy(id="login_success")
+	@FindBy(xpath="(//*[@class='fl-success fullW'])[1]")
 	private WebElement success_toast;
     @FindBy(xpath="//iframe[@title='reCAPTCHA']")
 	private WebElement captcha_iframe;

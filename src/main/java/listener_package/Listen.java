@@ -5,31 +5,41 @@ import org.testng.ITestListener;
 import org.testng.ITestResult;
 
 import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.Status;
 
 import Reports.Extended_Reports;
 
 
 public class Listen implements ITestListener {
 
+	private static final ThreadLocal<ExtentTest> logreader = new ThreadLocal();
 	Extended_Reports report = new Extended_Reports();
-	ExtentReports object =  report.getReport();
+	
+	public static ExtentTest print_in_report(){
+		
+		return logreader.get();
+		
+	}
 	
 	@Override
 	public void onTestStart(ITestResult result) {
-		// TODO Auto-generated method stub
-		ITestListener.super.onTestStart(result);
-		object.createTest(result.getMethod().getMethodName());
+		
+		String Methodname = result.getMethod().getMethodName();
+		logreader.set(report.getReport().createTest(Methodname));
+		
 	}
 
 	@Override
 	public void onTestSuccess(ITestResult result) {
-		// TODO Auto-generated method stub
-		ITestListener.super.onTestSuccess(result);
+		
+		logreader.get().log(Status.PASS, "Testcase Passed");
 	}
 
 	@Override
 	public void onTestFailure(ITestResult result) {
-		// TODO Auto-generated method stub
+		
+		logreader.get().log(Status.FAIL, result.getThrowable());
 		
 	}
 
@@ -60,7 +70,7 @@ public class Listen implements ITestListener {
 	@Override
 	public void onFinish(ITestContext context) {
 		// TODO Auto-generated method stub
-		object.flush();
+		report.getReport().flush();
 	}
 	
 	

@@ -21,15 +21,18 @@ public class Base {
 		Data_fetcher df = new Data_fetcher();
 		
 		
-		if(df.getdata("browser").equalsIgnoreCase("chrome")){
+		String Browser = System.getProperty("Browser")!=null ? System.getProperty("Browser") : df.getdata("browser");
+		String Target_url = System.getProperty("url")!=null ? System.getProperty("url") : df.getdata("url");
+		
+		if(Browser.equalsIgnoreCase("chrome")){
 			WebDriverManager.chromedriver().setup();
 			d = new ChromeDriver();
-			d.get(df.getdata("url"));
+			d.get(Target_url);
 			d.manage().window().maximize();}
-		if(df.getdata("browser").equalsIgnoreCase("firefox")){
+		if(Browser.equalsIgnoreCase("firefox")){
 			WebDriverManager.firefoxdriver().setup();
 			d = new FirefoxDriver();
-			d.get(df.getdata("url"));
+			d.get(Target_url);
 			d.manage().window().maximize();}
 		
 			
